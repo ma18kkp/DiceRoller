@@ -11,11 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
     }
@@ -61,8 +65,27 @@ public class MainActivity extends AppCompatActivity {
         TextView tv = this.findViewById(R.id.numberTextView);
 
         Random r = new Random();
-        int number = r.nextInt( 6);
-
+        int number = r.nextInt(6);
         tv.setText(Integer.toString(number));
+
+        EditText num = (EditText) findViewById(R.id.input);
+        TextView mesg = (TextView) findViewById(R.id.message);
+
+        int userInput = Integer.parseInt(num.getText().toString());
+        TextView counterV = (TextView) findViewById(R.id.counterValue);
+
+        if(number == userInput)
+        {
+            mesg.setText("Congratulations");
+
+                counter ++;
+                counterV.setText(Integer.toString(counter));
+        }
+        else
+        {
+            mesg.setText("Wrong");
+        }
+
     }
+
 }
